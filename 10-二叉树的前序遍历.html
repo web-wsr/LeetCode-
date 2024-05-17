@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 什么是树、二叉树、二叉搜索树：
+        // 树：它由一个根节点（相当于树根）开始，然后向下延伸出多个子节点（树枝），子节点又可以有自己的子节点，以此类推。这样的数据结构非常适合表示具有层次关系的数据。
+        // 二叉树：它的每个节点最多只有两个子节点，通常称为左子节点和右子节点
+        // 二叉搜索树：每个节点的左子树上所有节点的值都小于该节点的值，右子树上所有节点的值都大于该节点的值。
+        // 2 二叉树的前中后序遍历方式是什么：
+        // 前序遍历：先访问根节点，然后遍历左子树，最后遍历右子树。顺序是：根 - 左 - 右。
+        // 中序遍历：先遍历左子树，然后访问根节点，最后遍历右子树。顺序是：左 - 根 - 右。
+        // 后序遍历：先遍历左子树，然后遍历右子树，最后访问根节点。顺序是：左 - 右 - 根
+        // 3 什么是堆、二叉堆：
+        // 堆：堆是一个完全二叉树，每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。根节点最大的堆叫做大顶堆或大根堆，根节点最小的堆叫做小顶堆或小根堆。
+        // 二叉堆：叉堆是一种完全二叉树，并且它还是一个近似完全有序的树，父节点的值要么大于或小于（最大堆或最小堆）其所有子节点的值。
+        //  递归
+        var preorderTraversal = function (root) {
+            const res = [];
+            if (root === null) {
+                return res;
+            }
+            const order = function (node) {
+                res.push(node.val)  // 推入value值
+                if (node.left !== null) {
+                    order(node.left);
+                }
+                if (node.right !== null) {
+                    order(node.right);
+                }
+            };
+            order(root);
+            return res;
+        }
+    </script>
+</body>
+
+</html>

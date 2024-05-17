@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是二分查找：二分查找，就是折半查找，不断地将查找范围缩小一半直到查到对于的结果或者确定没有结果
+        // 二分查找在什么情况下使用:一个大且有序的数据集合，需要快速查找特定元素，可以用二分查找
+        var search = function (nums, target) {
+            // 返回值调用下面的函数
+            return binsearch(nums, target, 0, nums.length - 1)
+        };
+        // 二分查找的递归算法
+        const binsearch = function (nums, target, left, right) {
+            if (left <= right) {
+                let mid = left + Math.floor((right - left) / 2);
+                if (nums[mid] === target) {
+                    return mid
+                }
+                if (target < nums[mid]) {
+                    return binsearch(nums, target, left, mid - 1)
+                }
+                if (target > nums[mid]) {
+                    return binsearch(nums, target, mid + 1, right)
+                }
+            } else {
+                return -1
+            }
+        }
+        // case 测试
+        const nums = [-1, 0, 3, 5, 9, 12]
+        const target = 7
+        console.log(search(nums, target));
+    </script>
+</body>
+
+</html>

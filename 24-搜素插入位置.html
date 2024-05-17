@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var searchInsert = function (nums, target) {
+            // 返回值调用下面的函数
+            return binsearch(nums, target, 0, nums.length - 1)
+        };
+        // 二分查找的递归算法
+        const binsearch = function (nums, target, left, right) {
+            if (left <= right) {
+                let mid = left + Math.floor((right - left) / 2);
+                if (nums[mid] === target) {
+                    return mid
+                }
+                if (target < nums[mid]) {
+                    return binsearch(nums, target, left, mid - 1)
+                }
+                if (target > nums[mid]) {
+                    return binsearch(nums, target, mid + 1, right)
+                }
+            } else {
+                // 上面执行结果都不存在 返回按顺序所在的序列号
+                return left
+            }
+        }
+        // case 测试
+        const nums = [-1, 0, 3, 5, 9, 12]
+        const target = 3
+        console.log(searchInsert(nums, target));
+    </script>
+</body>
+
+</html>

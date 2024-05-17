@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是广度优先算法，如何实现 ？
+        // 简称：BFS
+        // 1. 从起始节点开始，将它放入队列中。
+        // 2. 当队列不为空时，从队列头部取出一个节点，检查这个节点是否为目标节点，如果是则结束；如果不是，遍历它的所有未访问过的左右节点，并将这些节点加入队列的尾部。
+        // 3. 重复步骤2，直到找到目标或队列为空。
+        // 什么是深度优先算法，如何实现 ？
+        // 简称：DFS
+        // 1. 从起始节点开始，将它压入栈中。
+        // 2. 当栈不为空时，从栈顶取出一个节点，检查这个节点是否为目标节点，如果是则结束；如果不是，遍历它的所有未访问过的左右节点，并将这些节点依次压入栈中。
+        // 3. 重复步骤2，直到找到目标或栈为空
+        var levelOrder = function (root) {
+            // 声明存放结果的数组 result
+            const result = []
+            const queue = []
+            queue.push(root)
+            if (root === null) {
+                return result
+            }
+            while (queue.length !== 0) {
+                // 记录当前的当前层数的节点数目
+                let length = queue.length
+                // 存放每一层的节点
+                const curlevel = []
+                // 遍历
+                for (i = 0; i < length; i++) {
+                    // 推出头部节点 返回当前节点 shift
+                    let node = queue.shift()
+                    // 存放val
+                    curlevel.push(node.val)
+                    // 存放当前层下一层的节点 但要判断当前节点的左右节点是否存在
+                    if (node.left) {
+                        queue.push(node.left)
+                    }
+                    if (node.right) {
+                        queue.push(node.right)
+                    }
+                }
+                // 记录每一层的数组结果
+                result.push(curlevel)
+            }
+            // 返回最终结果
+            return result
+        };
+    </script>
+</body>
+
+</html>

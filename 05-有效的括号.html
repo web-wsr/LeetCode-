@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 栈和队列：简单的属性就是：队列是先进先出，栈是先进后出的容器。
+        // 栈  push() pop()
+        // 1 声明一个空栈 stack
+        // 2 for 循环遍历字符串 声明char 装入字符
+        // 3 push装入栈中，取出倒数两个栈值 后进先出
+        // 4 判断两个栈是否匹配 匹配就pop 推出 
+        // 5 最后返回判断stack的length === 0 返回一个布尔值
+        var isValid = function (s) {
+            const stack = [];
+            // 创建一个map 映射
+            const map = {
+                ')': '(',
+                ']': '[',
+                '}': '{'
+            }
+            for (i = 0; i < s.length; i++) {
+                const char = s[i];
+                stack.push(char);
+                // 判断条件: stack.length >= 2,才会执行下面的操作
+                if (stack.length >= 2) {
+                    const lastOne = stack[stack.length - 1]
+                    const lastTwo = stack[stack.length - 2]
+                    if (map[lastOne] === lastTwo) {
+                        stack.pop()
+                        stack.pop()
+                    }
+                }
+
+            }
+            return stack.length === 0;
+        };
+        // case 测试
+        const s = "()[]{}]"
+        console.log(isValid(s));
+    </script>
+</body>
+
+</html>

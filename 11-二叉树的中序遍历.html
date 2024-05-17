@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  递归
+        var preorderTraversal = function (root) {
+            const res = [];
+            if (root === null) {
+                return res;
+            }
+            const order = function (node) {
+                if (node.left !== null) {
+                    order(node.left);
+                }
+                res.push(node.val)  // 推入value值
+                if (node.right !== null) {
+                    order(node.right);
+                }
+            };
+            order(root);
+            return res;
+        }
+    </script>
+</body>
+
+</html>

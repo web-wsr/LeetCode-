@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 分治：将大的问题拆解成小问题，拆解到最小问题后，不断合并结果
+        var myPow = function (x, n) {
+            if (n === 0) {
+                return 1
+            }
+            if (n < 0) {    // n<0 x的n次方等于1/x的-n次方
+                return 1 / myPow(x, -n)
+            }
+            if (n % 2 === 0) {  // n为偶数 使用分治 一分为二 ，等于 x*x 的n/2次方
+                return myPow(x * x, n / 2)
+            }
+            return x * myPow(x, n - 1) // n为奇数时 x的n次方= x* x的n-1次方
+        }
+        // case 测试
+        console.log(myPow(2.00000, 10));
+    </script>
+</body>
+
+</html>

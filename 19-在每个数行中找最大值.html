@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var levelOrder = function (root) {
+            // 声明存放结果的数组 result
+            const result = []
+            const queue = []
+            queue.push(root)
+            while (root !== null && queue.length) {
+                // 初始化max为队列的第一个元素val值
+                let max = queue[0].val
+                // 记录当前的当前层数的节点数目
+                let length = queue.length
+                // 遍历
+                while (length--) {
+                    // 推出头部节点 返回当前节点 shift
+                    let node = queue.shift()
+                    // 判断当前层的最大值
+                    max = Math.max(max, node.val)
+                    // 存放当前层下一层的节点 但要判断当前节点的左右节点是否存在
+                    if (node.left) {
+                        queue.push(node.left)
+                    }
+                    if (node.right) {
+                        queue.push(node.right)
+                    }
+                }
+                // 记录推进每一层的数组的最大值
+                result.push(max)
+            }
+            // 返回最终结果
+            return result
+        };
+    </script>
+</body>
+
+</html>

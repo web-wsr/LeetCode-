@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是数组 ：数组是存放在连续内存空间上的相同类型数据的集合， 数组可以方便的通过下标索引的方式获取到下标下对应的数据
+        // 什么是链表：指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）
+        // 什么是跳表：跳表在原来的有序链表上加上了多级索引，通过索引来快速查找；可以快速的删除、插入和查找操作。
+        //  用两次for 循环 快慢指针
+        const moveZeroes = function (nums) {
+            // 定义慢指针
+            let j = 0
+            // for循环遍历
+            for (i = 0; i < nums.length; i++) {
+                // 如果找到非零的数，赋值给慢指针对应的索引位置，接着慢指针j++往后移动
+                if (nums[i] !== 0) {
+                    nums[j] = nums[i]
+                    j++
+                }
+            }
+            // 全部找到后，i指针从j当前位置遍历，进行赋值0操作
+            for (i = j; i < nums.length; i++) {
+                nums[i] = 0
+            }
+            return nums
+        };
+        // case 测试
+        const nums1 = [0, 1, 0, 3, 14]
+        const nums2 = [0]
+        console.log(moveZeroes(nums1));
+        console.log(moveZeroes(nums2));
+    </script>
+</body>
+
+</html>

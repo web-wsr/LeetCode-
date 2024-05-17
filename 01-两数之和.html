@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是算法和数据结构 ?
+        // 数据结构: 在计算机中，存储和组织数据的方式，数据分为一维结构：数组、链表、栈、队列、集合、映射一维类型，二维结构：一维结构衍生。数据种类繁多，不同数据结构有不同的性能，要根据特性更高效组织使用
+        // 算法: 算法是解决需求的办法和实现步骤逻辑。不同的算法效率不同，用时间复杂度和空间复杂度去定义比较，从而选出更优的算法
+        //  两数之和
+        const nums = [2, 7, 11, 15]
+        const target = 6
+        const twosum = function (nums, target) {
+            const box = {}
+            for (let i = 0; i < nums.length; i++) {
+                if (box[target - nums[i]] >= 0) {
+                    return [box[target - nums[i]], i];
+                };
+                box[nums[i]] = i;
+            }
+        }
+        console.log(twosum(nums, target));
+    </script>
+</body>
+
+</html>

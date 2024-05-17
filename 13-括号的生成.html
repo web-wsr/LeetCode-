@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是递归：递归是指一个函数调用自身的方法。解决一个问题时，如果这个问题可以分解为一个或多个更小的相同类型的问题，就可以用递归去解决这些小问题
+        // 什么是分治：将大的问题拆解成小问题，拆解到最小问题后，不断合并结果
+        // 什么是回溯：是一种通过试错的方式来寻找问题解的方法，它尝试构建问题的解，如果发现当前路径不能得到有效的解，就取消上一步或几步的决定，再尝试其他可能性。
+        // 什么是动态规划：通过把原问题分解成相对简单的子问题来解决，并存储已解决的子问题的答案，避免重复计算，最终得到全局最优解。
+        var generateParenthesis = function (n) {
+            // 接收结果的数组
+            const res = []
+            // 定义一个函数 接受形参为 左右括号剩下的个数和字符串str
+            function dfs(leftRemain, rightRemain, str) {
+                // 递归的出口条件 左右括号都用完了
+                if (leftRemain === 0 && rightRemain === 0) {
+                    res.push(str)
+                    return
+                }
+                // 只能优先判断左括号 右括号不符合
+                if (leftRemain > 0) {
+                    dfs(leftRemain - 1, rightRemain, str + '(')
+                }
+                // 根据规律 左括号的数量小于右括号的数量时添加右括号
+                if (leftRemain < rightRemain) {
+                    dfs(leftRemain, rightRemain - 1, str + ')')
+                }
+            }
+            dfs(n, n, '')
+            return res
+        };
+        // case 测试
+        const n = 3
+        console.log(generateParenthesis(n));
+    </script>
+</body>
+
+</html>

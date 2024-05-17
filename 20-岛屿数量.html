@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 深度优先 DFS
+        const numIslands = (grid) => {
+            let count = 0
+            for (let i = 0; i < grid.length; i++) {
+                for (let j = 0; j < grid[0].length; j++) {
+                    if (grid[i][j] === '1') {
+                        count++
+                        turnZero(i, j, grid)
+                    }
+                }
+            }
+            return count
+        }
+        function turnZero(i, j, grid) {
+            if (i < 0 || i >= grid.length || j < 0
+                || j >= grid[0].length || grid[i][j] === '0') return
+            grid[i][j] = '0'
+            turnZero(i, j + 1, grid)
+            turnZero(i, j - 1, grid)
+            turnZero(i + 1, j, grid)
+            turnZero(i - 1, j, grid)
+        }
+    </script>
+</body>
+
+</html>

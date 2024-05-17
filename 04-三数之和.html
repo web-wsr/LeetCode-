@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 排序+双指针 start end
+        // 1 给数组排序 从小到大
+        // 2 遍历数组，长度为length - 2, 防止指针溢出
+        // 3 i当前的值等于前面的值，就跳过，避免重复
+        // 4 三个数值不相同，这start = i + 1, end = length - 1
+        // i + start + end 对应的数的和是否等于0 ? 小于0 start++;大于0 end--
+        // 5 返回结果
+        var threeSum = function (nums) {
+            const result = [];
+            const newArr = nums.sort((a, b) => a - b);
+            for (let i = 0; i < newArr.length - 2; i++) {
+                if (i === 0 || nums[i] !== nums[i - 1]) {
+                    let start = i + 1;
+                    let end = newArr.length - 1;
+                    while (start < end) {
+                        if (newArr[i] + newArr[start] + newArr[end] === 0) {
+                            result.push([newArr[i], newArr[start], newArr[end]]);
+                            start++;
+                            end--;
+                            // 去重
+                            while (start < end && newArr[start] === newArr[start - 1]) {
+                                start++;
+                            }
+                            while (start < end && newArr[end] === newArr[end + 1]) {
+                                end--;
+                            }
+                        } else if (newArr[i] + newArr[start] + newArr[end] < 0) {
+                            start++;
+                        } else {
+                            end--;
+                        }
+                    }
+                }
+            }
+            return result;
+        };
+        // case 测试
+        const nums = [-1, 0, 1, 2, -1, -4]
+        console.log(threeSum(nums));
+    </script>
+</body>
+
+</html>

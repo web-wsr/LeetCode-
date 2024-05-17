@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 递归
+        // 定义: f(root), 返回这个根节点的二叉树的最大深度
+        // 出口条件：root不存在的时候，返回0
+        // 当root 存在时 ，那么证明此时二叉树的深度至少为1 
+        var maxDepth = function (root) {
+            if (!root) {
+                return 0
+            }
+            const left = maxDepth(root.left)
+            const right = maxDepth(root.right)
+            return Math.max(left, right) + 1
+
+        };
+    </script>
+</body>
+
+</html>

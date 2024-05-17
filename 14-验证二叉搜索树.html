@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 递归 二叉树的取值特征
+        var isValidBST = function (root) {
+            function dfs(root, min, max) {
+                if (!root) {
+                    return true
+                }
+                if (root.val >= max || root.val <= min) {
+                    return false
+                }
+                return dfs(root.left, min, Math.min(max, root.val)) && dfs(root.right, Math.max(min, root.val), max)
+            }
+            return dfs(root, -Infinity, Infinity)
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxArea = function (height) {
+            // 定义一个最大容积的初始值
+            let max = 0
+            // 定义双指针 index
+            let left = 0
+            let right = height.length - 1
+            // while 循环遍历 left<right  遍历过程中的新的容积(高度取决于短的一边）最大值比较并赋值
+            while (left < right) {
+                const newArea = (right - left) * Math.min(height[left], height[right])
+                if (newArea > max) {
+                    max = newArea
+                }
+                // 然后指针对应的大的值 左边大就移动右边，右边大移动左边
+                if (height[left] > height[right]) {
+                    right--
+                } else {
+                    left++
+                }
+            }
+            return max
+        }
+        // var maxArea = function (height) {
+        //     let max = 0;
+        //     for (let i = 0, j = height.length - 1; i < j;) {//双指针i，j循环height数组
+        //         //i，j较小的那个先向内移动 如果高的指针先移动，那肯定不如当前的面积大
+        //         const minHeight = height[i] < height[j] ? height[i++] : height[j--];
+        //         const area = (j - i + 1) * minHeight;//计算面积
+        //         max = Math.max(max, area);//更新最大面积
+        //     }
+        //     return max;
+        // };
+        // case 测试
+        const height1 = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+        const height2 = [1, 1]
+        console.log(maxArea(height1));
+        console.log(maxArea(height2));
+    </script>
+</body>
+
+</html>

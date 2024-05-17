@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 哈希表：数组就是一张哈希表。哈希表中关键码就是数组的索引下标，然后通过下标直接访问数组中的元素
+        // 映射： Map是一种以键值对的形式存储数据的集合。
+        // 集合：Set是一种无序且唯一的集合，可以存储任何类型的值，包括对象、函数和原始类型等
+        // 排序
+        //  长度要相等 ;...s用展开符转化成数组 sort()排序 在转化为字符串比较 返回布尔值
+        var isAnagram = function (s, t) {
+            return s.length = t.length && [...s].sort().join('') === [...t].sort().join('')
+        };
+        s = "anagram";
+        t = "nagaram"
+        console.log(isAnagram(s, t));
+    </script>
+</body>
+
+</html>

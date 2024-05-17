@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 变量交换 [a,b]=[b,a]
+        //  i < s.length / 2 控制左指针走的位置 也就控制了右指针j 
+        var reverseString = function (s) {
+            for (i = 0, j = s.length - 1; i < s.length / 2; i++, j--) {
+                [s[i], s[j]] = [s[j], s[i]]
+            }
+            return s;
+        };
+        // case 测试
+        const s = ["h", "e", "l", "l", "o"];
+        console.log(reverseString(s));
+
+    </script>
+</body>
+
+</html>

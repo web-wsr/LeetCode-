@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 栈 加一个参照物 stack=[-1]
+        // 遍历字符串s 遇到左括号"(" 我们就把当前对应的index push到stack ;遇到右括号 ")" ,就pop推出顶上的元素， 此时的有效长度为当前的遍历号i减去stack[stack.length-1]  但是栈不能为空 把当前的index推入 当作参照物 
+        var longestValidParentheses = function (s) {
+            // 声明一个栈 里面装一个参照物-1
+            const stack = [-1];
+            // 声明一个最大max有效长度的值 初始化为0
+            let max = 0;
+            for (i = 0; i < s.length; i++) {
+                const char = s[i]
+                if (s[i] === '(') {
+                    stack.push(i)
+                } else {
+                    stack.pop()
+                    if (stack.length !== 0) {
+                        // 计算有效长度 三元表达式
+                        max = i - stack[stack.length - 1] > max ? i - stack[stack.length - 1] : max;
+                    } else {
+                        stack.push(i)
+                    }
+                }
+            }
+            return max
+        };
+        // case 测试
+        const s = "(()";
+        console.log(longestValidParentheses(s));
+    </script>
+</body>
+
+</html>

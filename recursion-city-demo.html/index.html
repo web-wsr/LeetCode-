@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./city.js"></script>
+    <script>
+        const cityDatas = resDatas.data;
+        console.log(cityDatas);
+
+        // 1. 通过 id 获取城市数据中改 id 对应的信息
+        function getCityById(id, datas) {
+            const obj = {}
+            const find = function (id, datas) {
+                if (datas === undefined) {
+                    return {}
+                }
+                for (let i in datas) {
+                    const element = datas[i]
+                    // console.log(element);
+                    if (element.value === id) {
+                        obj.value = element.value
+                        obj.label = element.label
+                    }
+                    if (element.value !== id) {
+                        find(id, element.children)
+                    }
+                }
+            }
+            find(id, datas)
+            return obj
+        }
+        const result1 = getCityById(440104, cityDatas);
+        console.log(result1);
+        // {value: 440104, label: "荔湾区"}
+        const result2 = getCityById(440100, cityDatas);
+        console.log(result2);
+        // {value: 440100, label: "广州市"}
+        const result4 = getCityById(420100, cityDatas);
+        console.log(result4);
+        // {value: 420100, label: '武汉市'}
+
+
+
+        // 2. 通过 id  id 获取城市数据中改 id 对应的信息以及父级信息
+        function getCityWithParentById(id, datas) {
+            for (let i in datas) {
+                const element = datas[i]
+                // console.log(element);
+                if (element.value === id) {
+                    return [{ value: element.value, label: element.label }]
+                }
+                if (element.children) {
+                    let node = getCityWithParentById(id, element.children)
+                    if (node !== undefined) { // 递归函数结果是否存在
+                        // 合并数组，返回一个新的数组
+                        return node.concat({ value: element.value, label: element.label })
+                    }
+                }
+            }
+        }
+        const result3 = getCityWithParentById(440104, cityDatas);
+        //  翻转数组
+        console.log(result3.reverse());
+        // [{ value: 440000, label: "广东省" }, { value: 440100, label: "广州市" }，{ value: 440104, label: "荔湾区" }]
+        const result5 = getCityWithParentById(420100, cityDatas);
+        //  翻转数组
+        console.log(result5.reverse());
+
+    </script>
+</body>
+
+</html>
